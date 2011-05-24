@@ -1,0 +1,88 @@
+<script type="text/javascript">
+var subCat = new Array();
+<% @sub_categories=SubCategory.find(:all) -%>
+<% for sub_category in @sub_categories -%>
+  subCat.push(new Array('<%= sub_category.category_id %>', '<%=h sub_category.category_id %>', '<%= sub_category.sub_category %>'));
+<% end -%>
+alert("subCat "+subCat);
+function categorySelected() {
+alert("hii");
+  category_id = $('recipe_category').value;
+  alert("category_id "+category_id);
+  options = $('recipe_sub_category').options;
+  alert("options "+options);
+  options.length = 1;
+  subCat.each(function(sub) {
+    if (sub[0] == category_id) {
+      options[options.length] = new Option(sub[1], sub[2]);
+    }
+  });
+
+}
+
+  document.observe('dom:loaded', function() {
+  categorySelected();
+  $('recipe_category').observe('onchange', categorySelected);
+  });
+</script>
+
+<%= form_for @recipe, :html => { :multipart => true } do |f| %>
+  <% if @recipe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+      <ul>
+      <% @recipe.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.label :recipe_name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :is_veg %><br />
+    <%= f.check_box :is_veg %>
+  </div>
+  <div class="field">
+    <%= f.label :category %><br />
+    
+    <select name="recipe[category]" id="recipe_category"  >
+						 <option value="1">Indian</option>
+						 <option value="2">Chineese</option>
+						 <option value="3">Continental</option> </select>
+
+  </div>
+  <div class="field">
+    <%= f.label :sub_category %><br />
+    <%= f.collection_select :sub_category, SubCategory.find(:all), :id, :sub_category, :include_blank => true  %>
+  </div>
+  <div class="field">
+    <%= f.label :image %><br />
+    <%= f.file_field :avatar %>
+  </div>
+  <div class="field">
+    <%= f.label :video %><br />
+    <%= f.text_area :video, :size=>"25x4" %>
+  </div>
+  <div class="field">
+    <%= f.label :steps %><br />
+    <%= f.text_area :steps, :size=>"25x4" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :keywords %><br />
+    <%= f.text_area :tag, :size=>"25x4" %>
+  </div>
+  <div class="field">
+    <%= f.label :rating %><br />
+    <%= f.text_field :rating %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

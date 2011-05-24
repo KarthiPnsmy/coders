@@ -1,0 +1,50 @@
+
+<h1><%= @recipe.name %></h1>
+
+
+<p>
+  <b>User name:</b>
+  <%= @recipe.user_name %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @recipe.name %>
+</p>
+
+<p>
+  <b>Is veg:</b>
+  <%= @recipe.is_veg %>
+</p>
+
+
+<p>
+    <b>Image:</b><br />
+	<%= image_tag @recipe.avatar.url, :border=>"2", :size=>"120x120" %>
+<p>
+  <b>Category:</b>
+  <%= @recipe.category %>
+</p>
+<p>
+  <b>Sub Category:</b>
+  <%= @recipe.sub_category %>
+</p>
+<p>
+  <b>Steps:</b>
+  <%= @recipe.steps %>
+</p>
+<p>
+  <b>Comments:</b>
+  <%= @recipe.comments %>
+</p>
+<p>
+  <b>Tag:</b>
+  <%= @recipe.tag %>
+</p>
+  <b>Rating:</b>
+  <%= @recipe.rating %>
+</p>
+<% if session[:permission]=='admin' or session[:user]==@recipe.user_id %>
+<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+<% end %>
+<%= link_to 'Back', recipes_path %>

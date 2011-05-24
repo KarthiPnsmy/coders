@@ -30,6 +30,8 @@ GEM
     activesupport (3.0.6)
     arel (2.0.9)
     builder (2.1.2)
+    client_side_validations (3.0.4)
+      activesupport (~> 3.0.0)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     i18n (0.5.0)
@@ -40,6 +42,9 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.16)
     mysql (2.8.1-x86-mingw32)
+    paperclip (2.3.11)
+      activerecord (>= 2.3.0)
+      activesupport (>= 2.3.2)
     polyglot (0.3.1)
     rack (1.2.2)
     rack-mount (0.6.14)
@@ -64,10 +69,14 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.26)
+    will_paginate (3.0.pre2)
 
 PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  client_side_validations
   mysql
+  paperclip (~> 2.3)
   rails (= 3.0.6)
+  will_paginate (= 3.0.pre2)

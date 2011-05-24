@@ -1,0 +1,35 @@
+<h1>Listing Recipes</h1>
+
+<table cellspacing="0" cellpadding="10px" border="1">
+  <tr>
+    <th>S No</th>
+    <th>User name</th>
+    <th>Name</th>
+    <th>Rating</th>
+    <% if session[:permission]=='admin'%>
+    <th colspan="3">Actions</th>
+    <%end%>
+  </tr>
+
+<% @recipes.each_with_index do |recipe, index| %>
+  <tr>
+    <td><%= index+1 %></td>
+    <td><% if recipe.user_id==session[:user] %>You<% else %><%= recipe.user_name %><% end %></td>
+    <td><%= link_to recipe.name, recipe %></td>
+    <td><%= recipe.rating %></td>
+    <% if session[:permission]=='admin'%>
+    <td><%= link_to 'Show', recipe %></td>
+    <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
+    <td><%= link_to 'Destroy', recipe, :confirm => 'Are you sure want to detete this Recipe?', :method => :delete %></td>
+    <%end%>
+  </tr>
+<% end %>
+</table>
+
+
+<br />
+
+
+
+<b><%= will_paginate @recipes %></b>
+<%= link_to 'New Recipe', new_recipe_path %>

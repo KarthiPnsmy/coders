@@ -1,5 +1,32 @@
 Coder::Application.routes.draw do
+  
+  resources :sub_categories
+  match 'recipe_search' => 'recipes#search'
+  get "home/logout"
+  match 'home/logout' => 'home#logout'
+  match 'login' => 'home#login'
+  get "home/index"
+
+  #get "home/login"
+
+  match 'authenticate' => 'home#authenticate'
+
+  resources :recipes
+
+  resources :user_profiles
+
   resources :users
+  
+  
+  # get "home/index"
+# 
+  # get "home/login"
+# 
+  # get "home/authenticate"
+# 
+  # get "home/logout"
+# 
+  # resources :users
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -50,7 +77,7 @@ Coder::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => "welcome#index"
+   root :to => "home#index"
 
   # See how all your routes lay out with "rake routes"
 

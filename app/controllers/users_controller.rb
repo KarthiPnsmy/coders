@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :protect, :except => [:new, :create]
+  
   # GET /users
   # GET /users.xml
   def index
@@ -41,16 +43,33 @@ class UsersController < ApplicationController
   # POST /users.xml
   def create
     @user = User.new(params[:user])
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to(@user, :notice => 'User was successfully created.') }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
+    
+    if params[:user][:permission]=='admin'
+    
+    @chk=User.find_by_permission('admin')
+                if @chk.blank?
+                      if @user.save
+                        redirect_to(login_path, :notice => 'User was successfully created.') 
+                      else
+                        render :action => "new" 
+                      end      
+                else
+                      flash[:notice]="Only one Admin user allowed"
+                      render :action => "new"
+                end
+          
+    else
+                if @user.save
+                  #session[:user]=@user.id
+                  redirect_to(login_path, :notice => 'User was successfully created.') 
+                else
+                  render :action => "new" 
+                end      
     end
+
+
+
+    
   end
 
   # PUT /users/1

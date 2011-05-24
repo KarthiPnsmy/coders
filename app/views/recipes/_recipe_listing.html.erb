@@ -1,0 +1,14 @@
+<%= render :partial=> 'search_bar'%>
+<table cellspacing="0" cellpadding="10px" border="1">
+<% unless @recipes.blank? %>
+	<tr>
+		<th>S NO</th><th>Recipe Name</th><th>User Name</th><th>Category</th>
+	</tr>
+
+  <% @recipes.each_with_index do |recipe,index| %>
+	<tr>
+		<td><%= index+1 %></td><td><%= recipe.name %></td><td><%= recipe.user_name %></td><td><%= recipe.category %></td>
+	</tr>
+  <% end %> 
+<% end %>
+</table>

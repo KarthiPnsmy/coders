@@ -1,2 +1,12 @@
-<h1>Welcome to my Coders application  </h1>
-<%= link_to "Add New User", new_user_path %>
+<div style="padding:10px;"><h1>Welcome to Recipe Management System</h1></div>
+
+<div style="padding:6px;">Already have an account?<%= link_to "login", :controller=>"home", :action=>"login" %></div>
+<table cellpadding="20px" cellspacing="0" border="1">
+	<tr>
+		<td>
+		<h1>New User Signup</h1>
+		<%= render '/users/form' %>
+		</td>
+	</tr>
+</table>
+

@@ -10,7 +10,46 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110520051144) do
+ActiveRecord::Schema.define(:version => 20110521181302) do
+
+  create_table "recipes", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "user_name"
+    t.string   "name"
+    t.boolean  "is_veg"
+    t.string   "category"
+    t.string   "sub_category"
+    t.string   "image"
+    t.string   "video"
+    t.string   "rating"
+    t.string   "tag"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "steps"
+    t.string   "comments"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+  end
+
+  create_table "sub_categories", :force => true do |t|
+    t.integer  "category_id"
+    t.string   "sub_category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_profiles", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "profile_name"
+    t.string   "address"
+    t.string   "phone"
+    t.integer  "mobile"
+    t.integer  "gender"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"

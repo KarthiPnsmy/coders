@@ -6,7 +6,10 @@ gem 'rails', '3.0.6'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql'
-
+gem "paperclip", "~> 2.3"
+gem "client_side_validations"
+gem 'will_paginate', '3.0.pre2'
+#gem "will_paginate", "2.3.15"
 # Use unicorn as the web server
 # gem 'unicorn'
 

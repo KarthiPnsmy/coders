@@ -1,4 +1,9 @@
-<%= form_for(@user) do |f| %>
+
+<%= javascript_include_tag 'jquery' %>
+<%= javascript_include_tag 'rails.validations' %>
+<%= stylesheet_link_tag 'scaffold', :media => "all" %>
+
+<%= form_for @user, :validate => true do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -21,15 +26,19 @@
   </div>
   <div class="field">
     <%= f.label :password %><br />
-    <%= f.text_field :password %>
+    <%= f.password_field :password %>
   </div>
   <div class="field">
-    <%= f.label :permission %><br />
-    <%= f.text_field :permission %>
+    <%= f.label :Password_Confirmation %><br />
+    <%= f.password_field :password_confirmation %>
   </div>
   <div class="field">
-    <%= f.label :dob %><br />
+    <%= f.label :DOB %><br />
     <%= f.text_field :dob %>
+  </div>
+  <div class="field">
+    <%= f.label :role %><br />
+    <%= f.select(:permission, [['Admin', 'admin'], ['User', 'user']]) %>
   </div>
   <div class="actions">
     <%= f.submit %>
